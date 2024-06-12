@@ -31,7 +31,7 @@ class Study:
         self.ownerId = study["ownerId"]
         self.visibility = study["visibility"]
         self.settings = study["settings"]
-        self.from_ = study["from"]
+        self.__dict__['from'] = study["from"]
         self.likes = study["likes"]
         self.description = study.get("description")
         self.topics = study.get("topics")
