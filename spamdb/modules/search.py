@@ -112,8 +112,8 @@ def study_to_index(s: Study) -> str:
         "name": s.name,
         "owner": s.ownerId,
         "members": s.members,
-        "chapterNames": s.chapterNames,
-        "chapterTexts": s.chapterTexts,
+        "chapterNames": "",
+        "chapterTexts": "",
         "topics": s.topics,
         "likes": s.likes,
         "public": s.public
