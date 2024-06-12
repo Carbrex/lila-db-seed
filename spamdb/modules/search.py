@@ -14,7 +14,7 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
         ngames = _make_indices(es, "game", _game_mapping, games, _game_to_index)
         nposts = _make_indices(es, "forum", _forum_mapping, posts, _post_to_index)
         nteams = _make_indices(es, "team", _team_mapping, teams, _team_to_index)
-        nstudy = _make_indices(es, "study", _study_mapping, study, study_to_index)
+        nstudy = _make_indices(es, "study", _study_mapping, studies, study_to_index)
         es.close()
 
         print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}}}")
