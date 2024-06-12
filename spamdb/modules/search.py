@@ -53,8 +53,6 @@ def _make_indices(
         {"content-type": "application/x-ndjson; charset=UTF-8"},
     )
     rsp = es.getresponse()
-    print(rsp.read())
-    print(rsp.status)
     if rsp.status // 100 != 2:
         print(f"elasticsearch: POST /{index}/_bulk failed:")
         print(rsp.read(77) + "...")
@@ -122,7 +120,6 @@ def study_to_index(s: Study) -> str:
         "public": s.visibility == "public",
     }
     op = {"index": {"_index": "study", "_id": s._id, "_type": "_doc"}}
-    print(json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n")
     return json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n"
 
 _game_mapping = {
