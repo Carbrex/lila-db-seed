@@ -116,7 +116,7 @@ def study_to_index(s: Study) -> str:
         "chapterTexts": "",
         "topics": s.topics,
         "likes": s.likes,
-        "public": s.public
+        "public": s.visibility
     }
     op = {"index": {"_index": "study", "_id": s._id, "_type": "_doc"}}
     return json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n"
