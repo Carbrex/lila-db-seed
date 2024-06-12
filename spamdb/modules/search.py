@@ -119,7 +119,7 @@ def study_to_index(s: Study) -> str:
         "chapterTexts": " ",
         "topics": s.topics if s.topics else " ",
         "likes": s.likes,
-        "public": s.visibility
+        "public": s.visibility == "public",
     }
     op = {"index": {"_index": "study", "_id": s._id, "_type": "_doc"}}
     print(json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n")
