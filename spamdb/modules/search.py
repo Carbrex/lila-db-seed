@@ -115,7 +115,7 @@ def study_to_index(s: Study) -> str:
         "members": list(s.members.keys()),
         "chapterNames": " ",
         "chapterTexts": " ",
-        "topics": s.topics,
+        "topics": s.topics if s.topics else " ",
         "likes": s.likes,
         "public": s.visibility
     }
