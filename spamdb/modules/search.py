@@ -7,7 +7,7 @@ from modules.team import Team
 from modules.perf import clock_to_perf
 from modules.study import Study
 
-def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], teams: list[Team], study: list[Study]) -> None:
+def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], teams: list[Team], studies: list[Study]) -> None:
     host, port = hostport.split(":")
     es = http.client.HTTPConnection(host, port)
     try:
