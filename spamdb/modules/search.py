@@ -19,7 +19,8 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
 
         print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}}}")
     except Exception as e:
-        print(f"elasticsearch........... failed: {e}")
+        if es.sock:
+            print(f"elasticsearch........... failed: {e}")
         print("elasticsearch........... skipped, not running")
 
 def _make_indices(
@@ -109,7 +110,7 @@ def _team_to_index(t: Team) -> str:
 def study_to_index(s: Study) -> str:
     si = {
         "name": s.name,
-        "owner": s.owner,
+        "owner": s.ownerId,
         "members": s.members,
         "chapterNames": s.chapterNames,
         "chapterTexts": s.chapterTexts,
