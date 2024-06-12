@@ -17,7 +17,7 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
         nstudy = _make_indices(es, "study", _study_mapping, studies, study_to_index)
         es.close()
 
-        print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}, study: {nstudy}}")
+        print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}, study: {nstudy}}}")
     except Exception as e:
         if es.sock:
             print(f"elasticsearch........... failed: {e}")
