@@ -17,11 +17,13 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
         nstudy = _make_indices(es, "study", _study_mapping, studies, study_to_index)
         es.close()
 
-        print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}}}")
+        print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}, study: {nstudy}}")
     except Exception as e:
         if es.sock:
             print(f"elasticsearch........... failed: {e}")
-        print("elasticsearch........... skipped, not running")
+            es.close()
+        else:
+            print("elasticsearch........... skipped, not running")
 
 def _make_indices(
     es: http.client.HTTPConnection, index: str, mapping: dict, objects: list, builder
@@ -111,7 +113,7 @@ def study_to_index(s: Study) -> str:
     si = {
         "name": s.name,
         "owner": s.ownerId,
-        "members": s.members,
+        "members": list(s.members.keys()),
         "chapterNames": "",
         "chapterTexts": "",
         "topics": s.topics,
@@ -207,7 +209,7 @@ _study_mapping = {
             "chapterTexts": {"type": "text", "analyzer": "english", "boost": 1.0},
             "topics": {"type": "text", "analyzer": "english", "boost": 5.0},
             "likes": {"type": "short", "doc_values": True},
-            "public": {"type": "boolean", "doc_values": False}
+            "public": {"type": "boolean", "doc_values": False},
         },
     },
 }
