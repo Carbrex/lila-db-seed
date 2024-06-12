@@ -21,7 +21,6 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
     except Exception as e:
         if es.sock:
             print(f"elasticsearch........... failed: {e}")
-            es.close()
         else:
             print("elasticsearch........... skipped, not running")
 
@@ -121,6 +120,7 @@ def study_to_index(s: Study) -> str:
         "public": s.visibility
     }
     op = {"index": {"_index": "study", "_id": s._id, "_type": "_doc"}}
+    print(json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n")
     return json.dumps(op, indent=None) + "\n" + json.dumps(si, indent=None) + "\n"
 
 _game_mapping = {
