@@ -18,7 +18,8 @@ def update_elasticsearch(hostport: str, games: list[Game], posts: list[Post], te
         es.close()
 
         print(f"elasticsearch........... {{game: {ngames}, forum: {nposts}, team: {nteams}}}")
-    except:
+    except Exception as e:
+        print(f"elasticsearch........... failed: {e}")
         print("elasticsearch........... skipped, not running")
 
 def _make_indices(
